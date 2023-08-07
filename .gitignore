@@ -15,7 +15,16 @@
 *.out
 
 # Dependency directories (remove the comment below to include it)
-# vendor/
+vendor/
 
 # Go workspace file
 go.work
+
+.DS_Store
+ably-js.iml
+.idea
+**/*/node_modules
+npm-debug.log
+.tool-versions
+**/*/build/
+**/*/docs/generated/
