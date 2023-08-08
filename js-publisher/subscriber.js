@@ -10,7 +10,9 @@ var ablyClient = new Ably.Realtime({ key: ABLY_KEY, logLevel: 'warn'});
 var channel = ablyClient.channels.get('test');
 
 var receivedMessages = []
+var counter = 0;
 channel.subscribe(message => {
+    console.log('message received '+ ++counter)
     receivedMessages.push(message.data)
 })
 const rl = readline.createInterface({
