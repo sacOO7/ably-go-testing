@@ -11,14 +11,14 @@ Node.js, Golang
 
 ```go
 cd go-subscriber
-go mod install
+go install
 go run main.go // starts listening to messages and saves them in `generated/go_subscribed.json` at root.
 ```
 
 2. `js-publisher` - contains scripts for generating dummy message data, publishing to `test` channel and subscribing to the same.
 ```js
 cd js-publisher
-npm run install
+npm install
 npn run generate // Generates 1000 messages in a file under `generated/messages.json` at root.
 npm run publish // Publishes messages from `generated/messages.json` and saves them at ``generated/js_published.json``
 npm run subscribe // starts listening to messages and saves them in `generated/js_subscribed.json` at root.
