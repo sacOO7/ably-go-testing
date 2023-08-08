@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "generate": "node generate.js",
-    "publish": "node index.js",
+    "publish": "node publisher.js",
+    "subscribe": "node subscriber.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

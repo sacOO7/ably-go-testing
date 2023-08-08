@@ -21,7 +21,7 @@ func main() {
 
 	client, err := ably.NewRealtime(
 		ably.WithKey(ABLY_KEY),
-		ably.WithLogLevel(ably.LogVerbose),
+		ably.WithLogLevel(ably.LogWarning),
 	)
 	if err != nil {
 		log.Fatal(err)
@@ -41,13 +41,14 @@ func main() {
 
 	defer u()
 
+	fmt.Println("Terminate the process to save received messages")
 	<-ctx.Done()
 
 	serializedString, err := json.MarshalIndent(messages, "", "    ")
 	if err != nil {
 		log.Fatal(err)
 	}
-	filepath := filepath.Join("../generated", "subscribed.json")
+	filepath := filepath.Join("../generated", "go_subscribed.json")
 	f, err := os.Create(filepath)
 	if err != nil {
 		log.Fatal(err)

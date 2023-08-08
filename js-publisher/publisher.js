@@ -3,9 +3,9 @@ const fs = require('fs');
 const path = require('path');
 
 const ABLY_KEY = "xVLyHw.ZCOcRw:AANYGugTk7v7tQpuT7-hzjotlo9dmB6nys_TSXZmNrU";
-const publishedMessagesPath = '../generated' + path.sep + 'published.json';
+const publishedMessagesPath = '../generated' + path.sep + 'js_published.json';
 
-var ablyClient = new Ably.Rest({ key: ABLY_KEY });
+var ablyClient = new Ably.Rest({ key: ABLY_KEY, logLevel: 'warn'});
 var channel = ablyClient.channels.get('test');
 
 function sleep(ms) {
@@ -29,13 +29,13 @@ async function publishMessages(messagesToBePublished) {
         await sleep(10);
         channel.publish('greeting', message, function(err) {
             if(err) {
-            console.log('publish failed with error ' + err);
+                console.log('publish failed with error ' + err);
             } else {
-            messagesPublished.push(message);
-            console.log('publish succeeded');
-            if(index == messagesToBePublished.length - 1) {
-                resolve(messagesPublished);
-            }
+                messagesPublished.push(message);
+                console.log('publish succeeded');
+                if(index == messagesToBePublished.length - 1) {
+                    resolve(messagesPublished);
+                }
             }
         });
     }
