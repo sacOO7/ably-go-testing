@@ -1,10 +1,13 @@
-package gosubscriber
+package main
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
 	"log"
 	"os"
 	"os/signal"
+	"path/filepath"
 
 	"github.com/ably/ably-go/ably"
 )
@@ -12,7 +15,7 @@ import (
 func main() {
 
 	var (
-		ABLY_KEY    = ""
+		ABLY_KEY    = "xVLyHw.ZCOcRw:AANYGugTk7v7tQpuT7-hzjotlo9dmB6nys_TSXZmNrU"
 		channelName = "test"
 	)
 
@@ -28,9 +31,9 @@ func main() {
 
 	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt)
 	defer cancel()
-
+	messages := []string{}
 	u, err := channel.SubscribeAll(ctx, func(m *ably.Message) {
-		log.Println("%v", m)
+		messages = append(messages, m.Data.(string))
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -39,4 +42,21 @@ func main() {
 	defer u()
 
 	<-ctx.Done()
+
+	serializedString, err := json.MarshalIndent(messages, "", "    ")
+	if err != nil {
+		log.Fatal(err)
+	}
+	filepath := filepath.Join("../generated", "subscribed.json")
+	f, err := os.Create(filepath)
+	if err != nil {
+		log.Fatal(err)
+	}
+	_, er := f.WriteString(string(serializedString))
+	if er != nil {
+		log.Fatal(er)
+	}
+	defer f.Close()
+
+	fmt.Println("Total messages received ", len(messages))
 }

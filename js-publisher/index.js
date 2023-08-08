@@ -16,6 +16,7 @@ const data = fs.readFileSync('../generated' + path.sep + 'messages.json', 'utf8'
 const messagesToBePublished = JSON.parse(data)
 
 publishMessages(messagesToBePublished).then(messagesPublished => {
+    console.log("total messages sent "+ messagesPublished.length)
     fs.writeFileSync(publishedMessagesPath, JSON.stringify(messagesPublished, null, 2));
 });
 
