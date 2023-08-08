@@ -21,7 +21,8 @@ publishMessages(messagesToBePublished).then(messagesPublished => {
 
 async function publishMessages(messagesToBePublished) {  
     var messagesPublished = [];
-    const promise = new Promise();
+    var resolve = () => {};
+    const promise = new Promise(res => resolve = res);
     for (let index = 0; index < messagesToBePublished.length; index++) {
         const message = messagesToBePublished[index];
         await sleep(10);
@@ -32,7 +33,7 @@ async function publishMessages(messagesToBePublished) {
             messagesPublished.push(message);
             console.log('publish succeeded');
             if(index == messagesToBePublished.length - 1) {
-                promise.resolve(messagesPublished);
+                resolve(messagesPublished);
             }
             }
         });
