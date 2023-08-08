@@ -4,6 +4,8 @@
   "description": "Example project to publish messages",
   "main": "index.js",
   "scripts": {
+    "generate": "node generate.js",
+    "publish" : "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
