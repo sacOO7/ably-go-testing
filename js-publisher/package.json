@@ -5,9 +5,12 @@
   "main": "index.js",
   "scripts": {
     "generate": "node generate.js",
-    "publish" : "node index.js",
+    "publish": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "ably": "^1.2.42"
+  }
 }

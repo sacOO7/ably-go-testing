@@ -13,7 +13,7 @@ func main() {
 
 	var (
 		ABLY_KEY    = ""
-		channelName = "channel"
+		channelName = "test"
 	)
 
 	client, err := ably.NewRealtime(

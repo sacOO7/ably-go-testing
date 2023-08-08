@@ -1,5 +1,7 @@
 var fs = require('fs');
+const path = require('path')
 const directory = '../generated'
+const filePath = directory + path.sep + 'messages.json'
 const messageSize = 2048; // 2kb each
 const noOfMessages = 1000;
 
@@ -27,5 +29,5 @@ for (let index = 0; index < noOfMessages; index++) {
     })
 }
 
-fs.writeFileSync(directory + '/published.json', JSON.stringify(messages, null, 2));
+fs.writeFileSync(filePath, JSON.stringify(messages, null, 2));
 
