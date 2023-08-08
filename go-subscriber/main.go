@@ -44,7 +44,7 @@ func main() {
 
 	defer u()
 
-	fmt.Println("Terminate the process to save received messages")
+	fmt.Println("Start sending messages, once sending compleye, terminate the process to save received messages")
 	<-ctx.Done()
 
 	serializedString, err := json.MarshalIndent(messages, "", "    ")
