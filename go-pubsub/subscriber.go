@@ -15,7 +15,7 @@ import (
 func main() {
 
 	var (
-		ABLY_KEY    = "xVLyHw.ZCOcRw:AANYGugTk7v7tQpuT7-hzjotlo9dmB6nys_TSXZmNrU"
+		ABLY_KEY    = "xVLyHw.RnzM8g:iV7CnSzWDKG7HRFFOieUCYyDG6z1QYXMiqlk-RF0A6U"
 		channelName = "test"
 	)
 

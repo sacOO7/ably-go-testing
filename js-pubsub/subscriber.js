@@ -7,7 +7,7 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-const ABLY_KEY = "xVLyHw.ZCOcRw:AANYGugTk7v7tQpuT7-hzjotlo9dmB6nys_TSXZmNrU";
+const ABLY_KEY = "xVLyHw.RnzM8g:iV7CnSzWDKG7HRFFOieUCYyDG6z1QYXMiqlk-RF0A6U";
 const receivedMessagesPath = '../generated' + path.sep + 'js_subscribed.json';
 
 var ablyClient = new Ably.Realtime({ key: ABLY_KEY, logLevel: 'warn'});

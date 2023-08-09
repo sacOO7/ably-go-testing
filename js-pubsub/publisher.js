@@ -2,7 +2,7 @@ var Ably = require('ably');
 const fs = require('fs');
 const path = require('path');
 
-const ABLY_KEY = "xVLyHw.ZCOcRw:AANYGugTk7v7tQpuT7-hzjotlo9dmB6nys_TSXZmNrU";
+const ABLY_KEY = "xVLyHw.RnzM8g:iV7CnSzWDKG7HRFFOieUCYyDG6z1QYXMiqlk-RF0A6U";
 const publishedMessagesPath = '../generated' + path.sep + 'js_published.json';
 
 var ablyClient = new Ably.Rest({ key: ABLY_KEY, logLevel: 'warn'});
