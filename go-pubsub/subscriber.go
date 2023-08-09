@@ -32,11 +32,11 @@ func main() {
 	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt)
 	defer cancel()
 	messages := []string{}
-	var counter = 1
+	var receivedMessagesCounter = 1
 	u, err := channel.SubscribeAll(ctx, func(m *ably.Message) {
 		messages = append(messages, m.Data.(string))
-		fmt.Printf("message received %v\n", counter)
-		counter++
+		fmt.Printf("message received %v\n", receivedMessagesCounter)
+		receivedMessagesCounter++
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -62,5 +62,5 @@ func main() {
 	}
 	defer f.Close()
 
-	fmt.Println("Total messages received ", len(messages))
+	fmt.Println("Total messages received ", receivedMessagesCounter-1)
 }
