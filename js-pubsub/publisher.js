@@ -32,8 +32,8 @@ async function publishMessages(messagesToBePublished) {
                 console.log('publish failed with error ' + err);
             } else {
                 messagesPublished.push(message);
-                console.log('publish succeeded');
-                if(index == messagesToBePublished.length - 1) {
+                console.log('publish succeeded '+ index);
+                if(messagesPublished.length == messagesToBePublished.length) {
                     resolve(messagesPublished);
                 }
             }

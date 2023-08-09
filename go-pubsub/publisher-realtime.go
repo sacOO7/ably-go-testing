@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"time"
 
 	"github.com/ably/ably-go/ably"
 )
@@ -18,7 +19,7 @@ func main() {
 		channelName = "test"
 	)
 
-	client, err := ably.NewREST(
+	client, err := ably.NewRealtime(
 		ably.WithKey(ABLY_KEY),
 		ably.WithLogLevel(ably.LogWarning),
 	)
@@ -27,8 +28,8 @@ func main() {
 	}
 
 	channel := client.Channels.Get(channelName)
-	// channel.Attach(context.Background())
-	// time.Sleep(time.Second)
+	channel.Attach(context.Background())
+	time.Sleep(time.Second)
 
 	data, err := os.ReadFile(filepath.Join("../generated", "messages.json"))
 	if err != nil {
@@ -43,18 +44,22 @@ func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 
 	sentMessages := make([]map[string]interface{}, len(messages))
+	sentMessagesCounter := 0
 	for index := 0; index < len(messages); index++ {
 		message := messages[index]
-		err := channel.Publish(context.Background(), "greeting", message)
-		if err != nil {
-			fmt.Printf("Error publishing message %v\n", err)
-		} else {
-			fmt.Printf("published message %v\n", index)
-			sentMessages[index] = message
-		}
-		if index == len(messages)-1 {
-			cancel()
-		}
+		time.Sleep(20 * time.Millisecond)
+		channel.PublishAsync("greeting", message, func(err error) {
+			if err != nil {
+				fmt.Printf("Error publishing message %v\n", err)
+			} else {
+				sentMessages[sentMessagesCounter] = message
+				sentMessagesCounter = sentMessagesCounter + 1
+				fmt.Printf("published message %v\n", sentMessagesCounter)
+			}
+			if sentMessagesCounter == len(messages) {
+				cancel()
+			}
+		})
 	}
 
 	<-ctx.Done()
@@ -64,7 +69,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	filepath := filepath.Join("../generated", "go_published.json")
+	filepath := filepath.Join("../generated", "go_published_realtime.json")
 	f, err := os.Create(filepath)
 	if err != nil {
 		log.Fatal(err)

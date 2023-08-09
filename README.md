@@ -13,7 +13,7 @@ Node.js, Golang
 cd js-pubsub
 npm install
 npn run generate // Generates 1000 messages in a file under `generated/messages.json` at root.
-npm run publish // Publishes messages from `generated/messages.json` and saves them at `generated/js_published.json`
+npm run publish // Publishes ~100 msg/sec from `generated/messages.json` and saves them at `generated/js_published.json`
 npm run subscribe // starts listening to messages and saves them in `generated/js_subscribed.json` at root.
 ```
 
@@ -23,5 +23,6 @@ npm run subscribe // starts listening to messages and saves them in `generated/j
 cd go-pubsub
 go install
 go run subscriber.go // starts listening to messages and saves them in `generated/go_subscribed.json` at root.
-go run publisher.go //  Publishes messages from `generated/messages.json` and saves them at `generated/go_published.json`
+go run publisher-rest.go //  Publishes 10-15 msg/sec from `generated/messages.json` and saves them at `generated/go_published_rest.json`
+go run publisher-realtime.go //  Publishes 45 msg/sec from `generated/messages.json` and saves them at `generated/go_published_realtime.json`
 ```
