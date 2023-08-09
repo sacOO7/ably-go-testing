@@ -5,7 +5,7 @@ Goal of this repo is to test missing messages while subscribing to channels
 Node.js, Golang
 
 ## Getting things into action
-- Clone the repo. (No need to setup ABLY_KEY)
+- Clone the repo. (Replace ABLY_KEY with your own)
 - Contains two folders
 
 1. `js-pubsub` - contains scripts for generating dummy message data, publishing to `test` channel and subscribing to the same.
