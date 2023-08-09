@@ -12,9 +12,9 @@ Node.js, Golang
 ```js
 cd js-pubsub
 npm install
-npn run generate // Generates 1000 messages in a file under `generated/messages.json` at root.
-npm run publish // Publishes ~100 msg/sec from `generated/messages.json` and saves them at `generated/js_published.json`
+npn run generate // Generates 1000 messages with 2kb size each in a file under `generated/messages.json` at root.
 npm run subscribe // starts listening to messages and saves them in `generated/js_subscribed.json` at root.
+npm run publish // Publishes ~100 msg/sec from `generated/messages.json` and saves them at `generated/js_published.json`
 ```
 
 2. `go-pubsub` - scripts responsible for listening and sending messages to `test` channel.
